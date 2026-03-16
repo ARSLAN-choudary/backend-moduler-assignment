@@ -1,0 +1,8 @@
+const validateContentType = (req, res, next) => {
+  if ((req.method === 'POST' || req.method === 'PUT') && req.headers['content-type'] !== 'application/json') {
+    return res.status(415).json({ error: 'Unsupported Media Type: Only JSON is allowed' });
+  }
+  next();
+};
+
+module.exports = { validateContentType };
